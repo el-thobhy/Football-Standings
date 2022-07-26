@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Football Klasemen</string>
+    <string name="welcome">Welcome</string>
+    <string name="name">Name</string>
+    <string name="league_name">League</string>
+    <string name="_2022">2022</string>
+    <string name="name_season">Name Season</string>
+    <string name="start_data">Start Data</string>
+    <string name="end_date">End Date</string>
+    <string name="start_date">Start Date</string>
+    <string name="rank">Rank</string>
+    <string name="club_name">Club Name</string>
+    <string name="logo">Logo</string>
+    <string name="gp">GP</string>
+    <string name="w">W</string>
+    <string name="d">D</string>
+    <string name="l">L</string>
+    <string name="gf">GF</string>
+    <string name="ga">GA</string>
+    <string name="_1">1</string>
+    <string name="madura_united">Madura United</string>
+    <string name="r">R</string>
+</resources>

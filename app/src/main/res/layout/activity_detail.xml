@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".ui.detail.DetailActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="124dp">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/BackgroundCollapse"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_league_detail"
+            android:layout_width="58dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            tools:src="@tools:sample/avatars"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@string/welcome"/>
+        <TextView
+            android:id="@+id/league_name_detail"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:text="@string/name"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/poppins_bold"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            app:layout_constraintStart_toEndOf="@id/img_league_detail"
+            app:layout_constraintTop_toTopOf="@id/img_league_detail"
+            app:layout_constraintBottom_toBottomOf="@id/img_league_detail"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/list_item_season"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:spanCount="4"
+        android:paddingTop="20dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        tools:itemCount="20" />
+
+
+</LinearLayout>

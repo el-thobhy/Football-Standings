@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="124dp">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/BackgroundCollapse"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        <TextView
+            android:id="@+id/welcome_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:textSize="30sp"
+            android:textColor="@color/white"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/poppins_bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/welcome"/>
+        <TextView
+            android:id="@+id/name_tv"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:text="@string/name"
+            android:textColor="@color/white"
+            android:fontFamily="@font/poppins_light"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/welcome_tv"
+            app:layout_constraintTop_toBottomOf="@id/welcome_tv"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/list_item_all_league"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="4"
+        android:padding="20dp"
+        tools:itemCount="20" />
+
+</LinearLayout>
