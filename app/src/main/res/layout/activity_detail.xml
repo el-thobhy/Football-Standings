@@ -20,9 +20,10 @@
             app:layout_constraintEnd_toEndOf="parent"/>
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/img_league_detail"
-            android:layout_width="58dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_margin="20dp"
+            android:background="@drawable/circle_bg"
             tools:src="@tools:sample/avatars"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -31,13 +32,16 @@
         <TextView
             android:id="@+id/league_name_detail"
             android:layout_marginTop="5dp"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:text="@string/name"
             android:textSize="20sp"
             android:textColor="@color/white"
             android:fontFamily="@font/poppins_bold"
             android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:layout_marginEnd="30dp"
             android:layout_marginStart="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/img_league_detail"
             app:layout_constraintTop_toTopOf="@id/img_league_detail"
             app:layout_constraintBottom_toBottomOf="@id/img_league_detail"/>

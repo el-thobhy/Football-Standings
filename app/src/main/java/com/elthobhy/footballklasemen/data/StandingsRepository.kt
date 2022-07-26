@@ -3,8 +3,10 @@ package com.elthobhy.footballklasemen.data
 import androidx.lifecycle.LiveData
 import com.elthobhy.footballklasemen.data.local.LocalData
 import com.elthobhy.footballklasemen.data.local.entity.allleagues.AllLeagues
+import com.elthobhy.footballklasemen.data.local.entity.allleagues.DetailLeague
 import com.elthobhy.footballklasemen.data.remote.RemoteData
 import com.elthobhy.footballklasemen.data.remote.response.response.DataItem
+import com.elthobhy.footballklasemen.data.remote.response.response.DataItemDetail
 import com.elthobhy.footballklasemen.data.remote.response.vo.ApiResponse
 import com.elthobhy.footballklasemen.utils.AppExecutors
 import com.elthobhy.footballklasemen.utils.vo.Resource
@@ -46,6 +48,7 @@ class StandingsRepository private constructor(
                         AllLeagues(
                             id = it,
                             abbr = response.abbr,
+                            name = response.name,
                             logos = response.logos
                         )
                     }
@@ -64,5 +67,9 @@ class StandingsRepository private constructor(
                 return localData.getAllLeagues()
             }
         }.asLiveData()
+    }
+
+    override fun getDetailLeagueById(id: String): LiveData<DetailLeague> {
+        return localData.getDetailLeague(id)
     }
 }

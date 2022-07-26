@@ -1,11 +1,14 @@
 package com.elthobhy.footballklasemen.ui.main
 
+import android.content.Intent
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.elthobhy.footballklasemen.data.local.entity.allleagues.AllLeagues
 import com.elthobhy.footballklasemen.databinding.ActivityMainBinding
+import com.elthobhy.footballklasemen.ui.detail.DetailActivity
+import com.elthobhy.footballklasemen.utils.Constants
 import com.elthobhy.footballklasemen.utils.vo.Status
 import com.elthobhy.footballklasemen.viewmodel.allleagues.AllLeaguesViewModel
 import org.koin.android.ext.android.inject
@@ -49,10 +52,15 @@ class MainActivity : AppCompatActivity() {
 
         allLeaguesAdapter.setOnItemClickCallback(object : AllLeaguesAdapter.OnItemClickCallback{
             override fun onItemClicked(data: AllLeagues) {
-                Toast.makeText(this@MainActivity,"Clicked",Toast.LENGTH_LONG).show()
+                showDetail(data)
             }
 
         })
 
+    }
+    private fun showDetail(data: AllLeagues) {
+        val intent = Intent(this,DetailActivity::class.java)
+        intent.putExtra(Constants.LEAGUE_ID, data.id)
+        startActivity(intent)
     }
 }

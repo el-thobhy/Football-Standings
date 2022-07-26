@@ -2,6 +2,7 @@ package com.elthobhy.footballklasemen.data.local
 
 import androidx.lifecycle.LiveData
 import com.elthobhy.footballklasemen.data.local.entity.allleagues.AllLeagues
+import com.elthobhy.footballklasemen.data.local.entity.allleagues.DetailLeague
 import com.elthobhy.footballklasemen.data.local.room.StandingsDao
 
 class LocalData private constructor(private val standingsDao: StandingsDao){
@@ -14,4 +15,6 @@ class LocalData private constructor(private val standingsDao: StandingsDao){
     }
     fun getAllLeagues(): LiveData<List<AllLeagues>> = standingsDao.getAllLeagues()
     fun insertAllLeagues(allLeagues: List<AllLeagues>) = standingsDao.insertAllLeagues(allLeagues)
+
+    fun getDetailLeague(id:String): LiveData<DetailLeague> = standingsDao.getDetailLeagues(id)
 }

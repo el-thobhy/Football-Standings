@@ -5,8 +5,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.elthobhy.footballklasemen.data.local.entity.allleagues.AllLeagues
+import com.elthobhy.footballklasemen.data.local.entity.allleagues.DetailLeague
 
-@Database(entities = [AllLeagues::class], version = 1, exportSchema = false)
+@Database(entities = [AllLeagues::class, DetailLeague::class], version = 1, exportSchema = false)
 abstract class StandingsDatabase: RoomDatabase() {
     abstract fun standingsDao(): StandingsDao
 

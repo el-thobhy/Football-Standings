@@ -10,6 +10,7 @@ import com.elthobhy.footballklasemen.data.remote.network.ApiService
 import com.elthobhy.footballklasemen.ui.main.AllLeaguesAdapter
 import com.elthobhy.footballklasemen.utils.AppExecutors
 import com.elthobhy.footballklasemen.viewmodel.allleagues.AllLeaguesViewModel
+import com.elthobhy.footballklasemen.viewmodel.detailleague.DetailViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -54,6 +55,7 @@ val repositoryModule = module {
 
 val viewModelModule = module{
     single { AllLeaguesViewModel(get()) }
+    single { DetailViewModel(get()) }
 }
 
 val adapterModule = module {

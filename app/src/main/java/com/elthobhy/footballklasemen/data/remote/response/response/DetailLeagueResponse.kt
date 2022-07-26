@@ -4,17 +4,18 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
-data class ResponseAllLeague<T>(
+
+data class DetailLeagueResponse<T>(
 
 	@field:SerializedName("data")
-	val data: List<T>? = null,
+	val dataItemDetail: List<T>? = null,
 
 	@field:SerializedName("status")
 	val status: Boolean? = null
 )
 
 @Parcelize
-data class DataItem(
+data class DataItemDetail(
 
 	@field:SerializedName("name")
 	val name: String? = null,
@@ -31,3 +32,5 @@ data class DataItem(
 	@field:SerializedName("slug")
 	val slug: String? = null
 ) : Parcelable
+
+

@@ -3,6 +3,7 @@ package com.elthobhy.footballklasemen.data.local.room
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.elthobhy.footballklasemen.data.local.entity.allleagues.AllLeagues
+import com.elthobhy.footballklasemen.data.local.entity.allleagues.DetailLeague
 
 @Dao
 interface StandingsDao {
@@ -17,4 +18,8 @@ interface StandingsDao {
 
     @Query("SELECT * FROM all_league WHERE bookmarked = 1")
     fun getBookmarkedLeagues(): LiveData<List<AllLeagues>>
+
+    @Query("SELECT * FROM all_league WHERE id= :id")
+    fun getDetailLeagues(id: String): LiveData<DetailLeague>
+
 }
