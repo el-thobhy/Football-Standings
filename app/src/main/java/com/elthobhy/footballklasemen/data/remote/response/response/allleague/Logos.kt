@@ -1,4 +1,4 @@
-package com.elthobhy.footballklasemen.data.remote.response.response
+package com.elthobhy.footballklasemen.data.remote.response.response.allleague
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

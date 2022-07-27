@@ -7,10 +7,12 @@ import com.elthobhy.footballklasemen.data.local.LocalData
 import com.elthobhy.footballklasemen.data.local.room.StandingsDatabase
 import com.elthobhy.footballklasemen.data.remote.RemoteData
 import com.elthobhy.footballklasemen.data.remote.network.ApiService
+import com.elthobhy.footballklasemen.ui.detail.SeasonAdapter
 import com.elthobhy.footballklasemen.ui.main.AllLeaguesAdapter
 import com.elthobhy.footballklasemen.utils.AppExecutors
 import com.elthobhy.footballklasemen.viewmodel.allleagues.AllLeaguesViewModel
 import com.elthobhy.footballklasemen.viewmodel.detailleague.DetailViewModel
+import com.elthobhy.footballklasemen.viewmodel.seasonleague.SeasonViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -56,8 +58,10 @@ val repositoryModule = module {
 val viewModelModule = module{
     single { AllLeaguesViewModel(get()) }
     single { DetailViewModel(get()) }
+    single { SeasonViewModel(get()) }
 }
 
 val adapterModule = module {
     factory { AllLeaguesAdapter() }
+    factory { SeasonAdapter() }
 }

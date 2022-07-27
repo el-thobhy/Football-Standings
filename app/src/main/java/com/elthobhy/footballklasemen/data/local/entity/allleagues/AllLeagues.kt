@@ -1,10 +1,9 @@
 package com.elthobhy.footballklasemen.data.local.entity.allleagues
 
 import android.os.Parcelable
-import androidx.annotation.NonNull
 import androidx.annotation.Nullable
 import androidx.room.*
-import com.elthobhy.footballklasemen.data.remote.response.response.Logos
+import com.elthobhy.footballklasemen.data.remote.response.response.allleague.Logos
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -29,4 +28,6 @@ data class AllLeagues (
 
     @ColumnInfo(name= "bookmarked")
     var bookmarked: Boolean = false,
-) : Parcelable
+) : Parcelable{
+    constructor(): this("","","",null,"",false)
+}

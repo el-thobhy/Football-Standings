@@ -1,36 +1,33 @@
-package com.elthobhy.footballklasemen.data.remote.response.response
+package com.elthobhy.footballklasemen.data.remote.response.response.allleague
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
-
-data class DetailLeagueResponse<T>(
+data class ResponseAllLeague<T>(
 
 	@field:SerializedName("data")
-	val dataItemDetail: List<T>? = null,
+	val data: List<T>? = null,
 
 	@field:SerializedName("status")
 	val status: Boolean? = null
 )
 
 @Parcelize
-data class DataItemDetail(
+data class DataItem(
 
-	@field:SerializedName("name")
+    @field:SerializedName("name")
 	val name: String? = null,
 
-	@field:SerializedName("id")
+    @field:SerializedName("id")
 	val id: String? = null,
 
-	@field:SerializedName("abbr")
+    @field:SerializedName("abbr")
 	val abbr: String? = null,
 
-	@field:SerializedName("logos")
+    @field:SerializedName("logos")
 	val logos: Logos? = null,
 
-	@field:SerializedName("slug")
+    @field:SerializedName("slug")
 	val slug: String? = null
 ) : Parcelable
-
-

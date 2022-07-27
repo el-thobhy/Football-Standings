@@ -48,6 +48,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_season"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:listitem="@layout/list_item_season"
@@ -55,8 +56,7 @@
         app:spanCount="4"
         android:paddingTop="20dp"
         android:paddingStart="20dp"
-        android:paddingEnd="20dp"
-        tools:itemCount="20" />
+        android:paddingEnd="20dp" />
 
 
 </LinearLayout>
