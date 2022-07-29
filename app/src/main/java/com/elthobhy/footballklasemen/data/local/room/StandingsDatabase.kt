@@ -7,17 +7,17 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.elthobhy.footballklasemen.data.local.entity.allleagues.AllLeagues
 import com.elthobhy.footballklasemen.data.local.entity.detailleague.DetailLeague
-import com.elthobhy.footballklasemen.data.local.entity.seasonleague.DataResponseLeague
 import com.elthobhy.footballklasemen.data.local.entity.seasonleague.SeasonLeague
+import com.elthobhy.footballklasemen.data.remote.response.response.standings.StandingsLeagueResponse
 
 @Database(
     entities = [
         AllLeagues::class,
         DetailLeague::class,
-        SeasonLeague::class,
-        DataResponseLeague::class], version = 1, exportSchema = false
+        StandingsLeagueResponse::class,
+        SeasonLeague::class,], version = 1, exportSchema = false
 )
-@TypeConverters(Converters::class)
+@TypeConverters(ConvertersStats::class,ConverterStanding::class)
 abstract class StandingsDatabase : RoomDatabase() {
     abstract fun standingsDao(): StandingsDao
 

@@ -3,10 +3,10 @@ package com.elthobhy.footballklasemen.data.remote
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.elthobhy.footballklasemen.data.remote.network.ApiConfig
-import com.elthobhy.footballklasemen.data.remote.response.response.SeasonLeagueResponseTest
-import com.elthobhy.footballklasemen.data.remote.response.response.SeasonsItemTest
 import com.elthobhy.footballklasemen.data.remote.response.response.allleague.DataItem
 import com.elthobhy.footballklasemen.data.remote.response.response.allleague.ResponseAllLeague
+import com.elthobhy.footballklasemen.data.remote.response.response.seasonleague.SeasonLeagueResponse
+import com.elthobhy.footballklasemen.data.remote.response.response.seasonleague.SeasonsItemTest
 import com.elthobhy.footballklasemen.data.remote.response.vo.ApiResponse
 import com.elthobhy.footballklasemen.utils.EspressoIdlingResource
 import retrofit2.Call
@@ -57,10 +57,10 @@ class RemoteData private constructor(){
         EspressoIdlingResource.increment()
         val seasonLeague = MutableLiveData<ApiResponse<List<SeasonsItemTest>>>()
         ApiConfig.getApiService().getSeasonById(id)
-            .enqueue(object : Callback<SeasonLeagueResponseTest>{
+            .enqueue(object : Callback<SeasonLeagueResponse>{
                 override fun onResponse(
-                    call: Call<SeasonLeagueResponseTest>,
-                    response: Response<SeasonLeagueResponseTest>
+                    call: Call<SeasonLeagueResponse>,
+                    response: Response<SeasonLeagueResponse>
                 ) {
                     if(response.isSuccessful){
                         seasonLeague.postValue(ApiResponse.success(response.body()?.data?.seasons as List<SeasonsItemTest>))
@@ -69,7 +69,7 @@ class RemoteData private constructor(){
                 }
 
                 override fun onFailure(
-                    call: Call<SeasonLeagueResponseTest>,
+                    call: Call<SeasonLeagueResponse>,
                     t: Throwable
                 ) {
                     seasonLeague.postValue(

@@ -5,22 +5,26 @@ import androidx.lifecycle.LiveData
 import com.elthobhy.footballklasemen.data.local.LocalData
 import com.elthobhy.footballklasemen.data.local.entity.allleagues.AllLeagues
 import com.elthobhy.footballklasemen.data.local.entity.detailleague.DetailLeague
-import com.elthobhy.footballklasemen.data.local.entity.seasonleague.DataResponseLeague
 import com.elthobhy.footballklasemen.data.local.entity.seasonleague.SeasonLeague
+import com.elthobhy.footballklasemen.data.local.room.StandingsDao
 import com.elthobhy.footballklasemen.data.remote.RemoteData
-import com.elthobhy.footballklasemen.data.remote.response.response.SeasonsItemTest
+import com.elthobhy.footballklasemen.data.remote.network.ApiService
+import com.elthobhy.footballklasemen.data.remote.response.response.seasonleague.SeasonsItemTest
 import com.elthobhy.footballklasemen.data.remote.response.response.allleague.DataItem
-import com.elthobhy.footballklasemen.data.remote.response.response.seasonleague.DataResponse
-import com.elthobhy.footballklasemen.data.remote.response.response.seasonleague.SeasonsItem
-import com.elthobhy.footballklasemen.data.remote.response.response.seasonleague.TypesItem
+import com.elthobhy.footballklasemen.data.remote.response.response.standings.StandingsLeagueResponse
 import com.elthobhy.footballklasemen.data.remote.response.vo.ApiResponse
 import com.elthobhy.footballklasemen.utils.AppExecutors
 import com.elthobhy.footballklasemen.utils.vo.Resource
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class StandingsRepository private constructor(
     private val remoteData: RemoteData,
     private val appExecutors: AppExecutors,
-    private val localData: LocalData
+    private val localData: LocalData,
+    private val apiService: ApiService,
+    private val dao: StandingsDao
 ) : StandingsDataSource {
     companion object {
         @Volatile
@@ -28,13 +32,17 @@ class StandingsRepository private constructor(
         fun getInstance(
             remoteData: RemoteData,
             appExecutors: AppExecutors,
-            localData: LocalData
+            localData: LocalData,
+            apiService: ApiService,
+            dao: StandingsDao
         ): StandingsRepository =
             instance ?: synchronized(this) {
                 instance ?: StandingsRepository(
                     remoteData,
                     appExecutors,
-                    localData
+                    localData,
+                    apiService,
+                    dao
                 ).apply {
                     instance = this
                 }
@@ -79,6 +87,7 @@ class StandingsRepository private constructor(
         return localData.getDetailLeague(id)
     }
 
+
     override fun getSeasonById(id: String): LiveData<Resource<List<SeasonLeague>>> {
         return object :
             NetworkBoundResource<List<SeasonLeague>, List<SeasonsItemTest>>(
@@ -90,13 +99,13 @@ class StandingsRepository private constructor(
 
             override fun saveCallResult(data: List<SeasonsItemTest>) {
                 val listSeason = ArrayList<SeasonLeague>()
-                for(response in data){
+                for (response in data) {
                     val season = SeasonLeague(
                         id = id,
                         year = response.year,
                         startDate = response.startDate,
                         endDate = response.endDate,
-                        displayName = response.displayName
+                        displayName = response.displayName,
                     )
                     listSeason.add(season)
                 }
@@ -111,5 +120,36 @@ class StandingsRepository private constructor(
                 return localData.getSeasonLeague(id)
             }
         }.asLiveData()
+    }
+
+    override fun fetchStanding(id: String,season: Int,onSuccess: (StandingsLeagueResponse) -> Unit, onError: (String)-> Unit) {
+        val response = apiService.getDetailStandingByYear(id, season)
+        response.enqueue(object : Callback<StandingsLeagueResponse>{
+            override fun onResponse(
+                call: Call<StandingsLeagueResponse>,
+                response: Response<StandingsLeagueResponse>
+            ) {
+                if(response.isSuccessful){
+                    Thread{
+                        dao.insertStandingLeague(response.body()!!)
+                        onSuccess(response.body()!!)
+                        Log.e("standingRepo", "onResponse: ${response.body()}", )
+                    }.start()
+                }else{
+                    onError(response.message())
+                }
+            }
+
+            override fun onFailure(call: Call<StandingsLeagueResponse>, t: Throwable) {
+                onError(t.localizedMessage ?: "Something went wrong")
+            }
+
+        })
+    }
+
+    override fun getStandingLocal(onSuccess: (StandingsLeagueResponse?) -> Unit) {
+        Thread{
+            onSuccess(dao.getStandingLeagues())
+        }
     }
 }

@@ -16,6 +16,8 @@
         <entry key="..\:/Users/Hp/AndroidStudioProjects/FootballKlasemen/app/src/main/res/layout/list_item_all_league.xml" value="0.22" />
         <entry key="..\:/Users/Hp/AndroidStudioProjects/FootballKlasemen/app/src/main/res/layout/list_item_season.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_detail.xml" value="0.11851851851851852" />
+        <entry key="app/src/main/res/layout/activity_standings.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_standings_league.xml" value="0.25" />
         <entry key="app/src/main/res/layout/list_item_season.xml" value="0.19583333333333333" />
       </map>
     </option>

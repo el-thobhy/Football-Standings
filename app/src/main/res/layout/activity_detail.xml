@@ -23,7 +23,6 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_margin="20dp"
-            android:background="@drawable/circle_bg"
             tools:src="@tools:sample/avatars"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"

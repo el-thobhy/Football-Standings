@@ -19,9 +19,9 @@
             app:layout_constraintEnd_toEndOf="parent"/>
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/img_league_detail"
-            android:layout_width="58dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_margin="20dp"
             tools:src="@tools:sample/avatars"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -30,13 +30,15 @@
         <TextView
             android:id="@+id/league_name_detail"
             android:layout_marginTop="5dp"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:text="@string/name"
             android:textSize="20sp"
             android:textColor="@color/white"
+            android:layout_marginEnd="20dp"
             android:fontFamily="@font/poppins_bold"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/img_league_detail"
             app:layout_constraintTop_toTopOf="@id/img_league_detail"
             app:layout_constraintBottom_toBottomOf="@id/img_league_detail"/>
@@ -88,6 +90,7 @@
                 style="@style/FontColor"
                 android:layout_marginTop="10dp"
                 android:layout_weight="10"
+                android:gravity="center"
                 android:fontFamily="@font/poppins_medium"
                 android:layout_marginStart="10dp"
                 android:layout_marginBottom="10dp"
@@ -99,6 +102,7 @@
                 android:layout_width="wrap_content"
                 style="@style/FontColor"
                 android:layout_weight="10"
+                android:gravity="center"
                 android:fontFamily="@font/poppins_medium"
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="10dp"
@@ -108,6 +112,7 @@
             <TextView
                 android:id="@+id/d_standing"
                 android:layout_weight="10"
+                android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/poppins_medium"
@@ -122,6 +127,7 @@
                 android:layout_width="wrap_content"
                 style="@style/FontColor"
                 android:layout_weight="10"
+                android:gravity="center"
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/poppins_medium"
@@ -133,6 +139,7 @@
                 android:layout_width="wrap_content"
                 style="@style/FontColor"
                 android:layout_weight="10"
+                android:gravity="center"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/poppins_medium"
                 android:layout_marginStart="10dp"
@@ -147,6 +154,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_weight="10"
+                android:gravity="center"
                 style="@style/FontColor"
                 android:layout_height="wrap_content"
                 android:text="@string/ga"/>
@@ -159,6 +167,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_weight="10"
+                android:gravity="center"
                 style="@style/FontColor"
                 android:layout_height="wrap_content"
                 android:text="@string/r"/>
@@ -166,12 +175,12 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_standings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_standings_league"
-        tools:itemCount="12"/>
+        tools:listitem="@layout/item_standings_league" />
 
 </LinearLayout>

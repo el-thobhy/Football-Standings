@@ -1,9 +1,9 @@
 package com.elthobhy.footballklasemen.data.local.entity.seasonleague
 
 import androidx.annotation.NonNull
-import androidx.room.*
-import com.elthobhy.footballklasemen.data.local.entity.allleagues.AllLeagues
-import com.elthobhy.footballklasemen.data.local.room.Converters
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 @Entity(tableName = "season_league")
 data class SeasonLeague(

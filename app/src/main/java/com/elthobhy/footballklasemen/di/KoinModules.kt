@@ -9,10 +9,13 @@ import com.elthobhy.footballklasemen.data.remote.RemoteData
 import com.elthobhy.footballklasemen.data.remote.network.ApiService
 import com.elthobhy.footballklasemen.ui.detail.SeasonAdapter
 import com.elthobhy.footballklasemen.ui.main.AllLeaguesAdapter
+import com.elthobhy.footballklasemen.ui.standings.StandingAdapter
 import com.elthobhy.footballklasemen.utils.AppExecutors
+import com.elthobhy.footballklasemen.utils.NetworkHelper
 import com.elthobhy.footballklasemen.viewmodel.allleagues.AllLeaguesViewModel
 import com.elthobhy.footballklasemen.viewmodel.detailleague.DetailViewModel
 import com.elthobhy.footballklasemen.viewmodel.seasonleague.SeasonViewModel
+import com.elthobhy.footballklasemen.viewmodel.standingleague.StandingViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -50,18 +53,20 @@ val databaseModule = module {
 val repositoryModule = module {
     single { RemoteData.getInstance() }
     single { LocalData.getInstance(get()) }
-    single { StandingsRepository.getInstance(get(),get(),get()) }
+    single { StandingsRepository.getInstance(get(),get(),get(),get(), get()) }
     single { AppExecutors() }
-
+    single { NetworkHelper(get()) }
 }
 
 val viewModelModule = module{
     single { AllLeaguesViewModel(get()) }
     single { DetailViewModel(get()) }
     single { SeasonViewModel(get()) }
+    single { StandingViewModel(get(),get()) }
 }
 
 val adapterModule = module {
     factory { AllLeaguesAdapter() }
     factory { SeasonAdapter() }
+    factory { StandingAdapter() }
 }

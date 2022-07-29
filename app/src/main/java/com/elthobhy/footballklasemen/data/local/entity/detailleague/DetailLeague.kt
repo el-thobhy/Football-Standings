@@ -7,7 +7,8 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.elthobhy.footballklasemen.data.remote.response.response.allleague.Logos
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
+
 
 @Parcelize
 @Entity(tableName = "detail_league")

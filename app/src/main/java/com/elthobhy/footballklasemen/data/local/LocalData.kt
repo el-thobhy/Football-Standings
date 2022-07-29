@@ -4,10 +4,8 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import com.elthobhy.footballklasemen.data.local.entity.allleagues.AllLeagues
 import com.elthobhy.footballklasemen.data.local.entity.detailleague.DetailLeague
-import com.elthobhy.footballklasemen.data.local.entity.seasonleague.DataResponseLeague
 import com.elthobhy.footballklasemen.data.local.entity.seasonleague.SeasonLeague
 import com.elthobhy.footballklasemen.data.local.room.StandingsDao
-import com.elthobhy.footballklasemen.data.remote.response.response.seasonleague.DataResponse
 
 class LocalData private constructor(private val standingsDao: StandingsDao){
     companion object{
@@ -23,7 +21,7 @@ class LocalData private constructor(private val standingsDao: StandingsDao){
     fun getDetailLeague(id:String): LiveData<DetailLeague> = standingsDao.getDetailLeagues(id)
 
     fun getSeasonLeague(id: String): LiveData<List<SeasonLeague>> {
-        Log.e("id", "getSeasonLeague: $id", )
+        Log.e("id", "getSeasonLeague: $id" )
       return standingsDao.getSeasonLeagues(id)
     }
     fun insertSeason(season: List<SeasonLeague>) = standingsDao.insertSeasonLeagues(season)
