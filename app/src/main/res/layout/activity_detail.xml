@@ -46,6 +46,12 @@
             app:layout_constraintBottom_toBottomOf="@id/img_league_detail"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <ProgressBar
+        android:layout_marginTop="50dp"
+        android:id="@+id/progress_circular"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_season"
         android:layout_width="match_parent"

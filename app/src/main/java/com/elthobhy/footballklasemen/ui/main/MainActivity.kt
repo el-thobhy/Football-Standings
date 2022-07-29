@@ -4,6 +4,9 @@ import android.content.Intent
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.view.View
 import android.widget.Toast
 import com.elthobhy.footballklasemen.data.local.entity.allleagues.AllLeagues
 import com.elthobhy.footballklasemen.databinding.ActivityMainBinding
@@ -37,13 +40,19 @@ class MainActivity : AppCompatActivity() {
                 if(listAllLeagues != null){
                     when(listAllLeagues.status){
                         Status.LOADING->{
-                            Toast.makeText(this@MainActivity,"Loading",Toast.LENGTH_LONG).show()
+                            progressCircular.visibility = View.VISIBLE
+                            rvAllLeagues.visibility = View.GONE
                         }
                         Status.SUCCESS->{
-                            listAllLeagues.data?.let { allLeaguesAdapter.setList(it) }
+                            listAllLeagues.data?.let {
+                                progressCircular.visibility = View.GONE
+                                rvAllLeagues.visibility = View.VISIBLE
+                                allLeaguesAdapter.setList(it)
+                            }
                         }
                         Status.ERROR->{
-                            Toast.makeText(this@MainActivity,"Error",Toast.LENGTH_LONG).show()
+                            rvAllLeagues.visibility = View.VISIBLE
+                            progressCircular.visibility = View.GONE
                         }
                     }
                 }

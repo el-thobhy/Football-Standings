@@ -3,6 +3,7 @@ package com.elthobhy.footballklasemen.ui.standings
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.elthobhy.footballklasemen.R
@@ -28,13 +29,16 @@ class StandingsActivity : AppCompatActivity() {
         val id = intent?.getStringExtra(Constants.LEAGUE_ID)
         val year = intent?.getIntExtra(Constants.STANDING_YEAR,0)
         showDetail(id)
+        binding.rvStandings.visibility = View.GONE
         if (id != null&& year != null) {
+            binding.rvStandings.visibility = View.VISIBLE
             standingViewModel.onCreate(id,year)
         }
         showRv()
     }
 
     private fun showRv() {
+        binding.progressCircular.visibility=View.VISIBLE
         binding.apply {
             rvStandings.apply {
                 layoutManager = LinearLayoutManager(this@StandingsActivity,LinearLayoutManager.VERTICAL,false)
@@ -43,6 +47,7 @@ class StandingsActivity : AppCompatActivity() {
             }
         }
         standingViewModel.standingResponse.observe(this){
+            binding.progressCircular.visibility=View.GONE
             adapterStanding.setList(it?.dataStandingsItem?.standings)
         }
         standingViewModel.errorResponse.observe(this){
